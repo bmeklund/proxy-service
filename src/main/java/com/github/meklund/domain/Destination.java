@@ -27,7 +27,7 @@ public class Destination {
         try {
             logger.info("Extracting backend");
             String scheme = headers.get(HTTP_SCHEME) != null ? headers.get(HTTP_SCHEME) : "http";
-            String port = headers.get(HTTP_PORT) != null ? headers.get(HTTP_PORT) : "80";
+            String port = "80"; //headers.get(HTTP_PORT) != null ? headers.get(HTTP_PORT) : "80";
             backendDestination =  scheme + "://" + headers.get(HOST) + ":" + port + "/" + headers.get(HTTP_PATH);
             logger.info("Backend destination: " + backendDestination);
 
