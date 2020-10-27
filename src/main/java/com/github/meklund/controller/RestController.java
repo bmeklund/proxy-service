@@ -14,7 +14,7 @@ import java.util.Map;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    protected static final Logger logger = LoggerFactory.getLogger(Destination.class);
+    private static final Logger logger = LoggerFactory.getLogger(RestController.class);
 
     private BackendService backendService;
     private Destination destination;
@@ -32,12 +32,10 @@ public class RestController {
     }
 
     @GetMapping("api")
-    public ResponseEntity<String> getSomething(@RequestHeader Map<String, String> headers, @RequestBody String body, @RequestParam String params) {
+    public ResponseEntity<String> getSomething(@RequestHeader Map<String, String> headers, @RequestParam String params) {
         logger.info("Got call, adding and forwarding");
-        logger.info("Message headers: " + headers.toString());
-        logger.info("Message body: " + body.toString());
-        String queryparams = params.toString();
-        logger.info("Message queryparams: " + queryparams);
+        logger.info("Message headers: {}", headers.toString());
+        logger.info("Message queryparams: {}", params);
         String backend = destination.getDestination(headers);
         ResponseEntity<String> result = backendService.fetchSomething(backend);
 
