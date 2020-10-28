@@ -26,14 +26,15 @@ public class Destination {
 
         try {
             logger.info("Extracting backend");
-            String scheme = headers.get(HTTP_SCHEME) != null ? headers.get(HTTP_SCHEME) : "http";
-            String port = "80"; //headers.get(HTTP_PORT) != null ? headers.get(HTTP_PORT) : "80";
-            String host = headers.get(HOST) != null ? headers.get(HOST) : "echo-api.3scale.net";
+            String scheme = headers.get(HTTP_SCHEME) != null ? headers.get(HTTP_SCHEME) : "https";
+            String port = headers.get(HTTP_PORT) != null ? headers.get(HTTP_PORT) : "443";
+            String host = headers.get(HOST) != null ? headers.get(HOST) : "cat-fact.herokuapp.com";
+            String path = headers.get(HTTP_PATH) != null ? headers.get(HOST) : "facts/random";
             backendDestination =  scheme + "://" + host + ":" + port + "/" + headers.get(HTTP_PATH);
             logger.info("Backend destination: " + backendDestination);
 
         } catch(Exception e) {
-            logger.error("Error when extracting backen-service url",e);
+            logger.error("Error when extracting backend-service url",e);
         }
         return backendDestination;
     }
