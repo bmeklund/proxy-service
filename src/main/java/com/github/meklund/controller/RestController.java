@@ -38,8 +38,8 @@ public class RestController {
         logger.info("Message queryparams: {}", requestParams.toString());
         String backend = destination.getDestination(headers);
         ResponseEntity<String> result = backendService.fetchSomething(backend);
-
-        logger.info("Sending result {}", result.toString());
+        logger.info("Got result {}", result.toString());
+        logger.info("Request done");
         return result;
     }
 

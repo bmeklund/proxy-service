@@ -24,11 +24,7 @@ public class BackendService {
         ResponseEntity<String> responseEntity = null;
         HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
         logger.info("Sending request to backend-service on url: {}",backendUrl);
-        try {
-            responseEntity = restTemplate.exchange(backendUrl, HttpMethod.GET, entity, String.class);
-        } catch (Exception ex) {
-            logger.error("Error when calling backend-service: {}",ex);
-        }
+        responseEntity = restTemplate.exchange(backendUrl, HttpMethod.GET, entity, String.class);
         return responseEntity;
     }
 }
