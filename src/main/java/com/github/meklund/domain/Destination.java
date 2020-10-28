@@ -19,7 +19,7 @@ public class Destination {
     public static final String HTTP_SCHEME = "http_x_forwarded_proto";
     public static final String HTTP_PORT = "http_x_forwarded_port";
     public static final String HTTP_PATH = "path";
-    public static final String HOST = "host";
+    public static final String HOST = "http_x_forwarded_host";
 
     public String getDestination(Map<String, String> headers) {
         String backendDestination = "";
@@ -28,7 +28,8 @@ public class Destination {
             logger.info("Extracting backend");
             String scheme = headers.get(HTTP_SCHEME) != null ? headers.get(HTTP_SCHEME) : "http";
             String port = "80"; //headers.get(HTTP_PORT) != null ? headers.get(HTTP_PORT) : "80";
-            backendDestination =  scheme + "://" + headers.get(HOST) + ":" + port + "/" + headers.get(HTTP_PATH);
+            String host = headers.get(HOST) != null ? headers.get(HOST) : "echo-api.3scale.net";
+            backendDestination =  scheme + "://" + host + ":" + port + "/" + headers.get(HTTP_PATH);
             logger.info("Backend destination: " + backendDestination);
 
         } catch(Exception e) {

@@ -25,8 +25,9 @@ public class RestController {
         this.destination = destination;
     }
 
-    @GetMapping("/ping")
+    @GetMapping("ping")
     public String ping() {
+        logger.info("Got a ping-call, returning Pong!");
         return "Pong!! " + new Date();
 
     }
@@ -41,6 +42,13 @@ public class RestController {
         logger.info("Got result {}", result.toString());
         logger.info("Request done");
         return result;
+    }
+
+    @GetMapping("/")
+    public String catchAll() {
+        logger.info("Got a call, returning");
+        return "Empty!! " + new Date();
+
     }
 
 }
