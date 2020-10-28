@@ -21,7 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/actuator/info");
+        registry.addViewController("/").setViewName("forward:/api");
     }
 
     private String[] getStaticLocations() {
