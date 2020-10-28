@@ -32,10 +32,10 @@ public class RestController {
     }
 
     @GetMapping("api")
-    public ResponseEntity<String> getSomething(@RequestHeader Map<String, String> headers, @RequestParam String params) {
+    public ResponseEntity<String> getSomething(@RequestHeader Map<String, String> headers, @RequestParam Map<String,String> requestParams) {
         logger.info("Got call, adding and forwarding");
         logger.info("Message headers: {}", headers.toString());
-        logger.info("Message queryparams: {}", params);
+        logger.info("Message queryparams: {}", requestParams.toString());
         String backend = destination.getDestination(headers);
         ResponseEntity<String> result = backendService.fetchSomething(backend);
 
